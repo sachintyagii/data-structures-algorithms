@@ -13,7 +13,8 @@ class MyQueue:
 
     def enqueue(self, data):
         if self.is_full():
-            raise('Queue is Full.')
+            print('Queue is Full.')
+            exit(1)
         else:
             if self.is_empty():
                 self.front += 1
@@ -24,17 +25,22 @@ class MyQueue:
     def dequeue(self):
         data = None
         if self.is_empty():
-            raise('Empty Queue.')
+            print('Empty Queue.')
+            exit(2)
         else:
             data = self.queue.pop(0)
             self.front += 1
 
+            if self.front > self.rear:
+                self.front = -1
+                self.rear = -1
         return data
 
     def peek(self):
         data = None
         if self.is_empty():
-            raise('Empty Queue.')
+            print('Empty Queue.')
+            exit(2)
         else:
             data = self.queue[0]
 
